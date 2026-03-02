@@ -1,0 +1,33 @@
+{
+  "agents": {
+    "list": [
+      {
+        "id": "main"
+      },
+      {
+        "id": "pm",
+        "workspace": "/home/andrew/.openclaw/workspace-pm",
+        "agentDir": "/home/andrew/.openclaw/agents/pm/agent"
+      }
+    ]
+  },
+  "bindings": [
+    {
+      "agentId": "pm",
+      "match": {
+        "channel": "telegram",
+        "peer": {
+          "kind": "group",
+          "id": "-1001234567890"
+        }
+      }
+    }
+  ],
+  "channels": {
+    "telegram": {
+      "enabled": true,
+      "groupPolicy": "allowlist",
+      "streaming": "off"
+    }
+  }
+}

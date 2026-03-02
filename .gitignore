@@ -1,1 +1,50 @@
+# Secrets
 .env
+.env.*
+!.env.example
+*.pem
+*.key
+key
+key.pub
+*.p12
+*.pfx
+*.crt
+*.ovpn
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.python-version
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Virtual envs
+.venv/
+venv/
+env/
+
+# Local state/runtime
+skills/notion-pm/.state/
+*.log
+logs/
+tmp/
+.cache/
+
+# Editor/OS
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# OpenClaw local runtime artifacts
+.openclaw/
+memory/*.tmp
