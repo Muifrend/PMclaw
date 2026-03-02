@@ -63,6 +63,53 @@ Fill in Notion/Tavily/OpenAI keys in `.env`.
 ### 4) Share Notion DB with your integration
 Open your Notion DB → `...` → Connections → add your integration.
 
+## Notion setup (required)
+
+### 1) Create your own Notion integration + token
+1. Go to https://www.notion.so/profile/integrations/internal
+2. Create a new **Internal integration**
+3. Copy the API token (`ntn_...` / `secret_...`)
+4. Put it in `.env`:
+   ```env
+   NOTION_API_KEY=your_notion_token
+   ```
+
+### 2) Create your own Notion database
+Create a database (for example: `PM Inbox`) and include this schema:
+
+Required properties:
+- `Task Name` (Title)
+- `Message` (Rich text)
+- `Status` (Select: `New`, `In Progress`, `Done`)
+- `Received At` (Date)
+- `Due Date` (Date)
+- `Dedup Key` (Rich text)
+- `Priority` (Select: `High`, `Medium`, `Low`)
+
+Optional (recommended for research enrichment):
+- `Research Summary` (Rich text)
+- `Research Links` (Rich text)
+
+### 3) Connect the integration to your DB
+In the Notion DB page:
+- Click `...` (top-right)
+- Open **Connections**
+- Add your integration
+
+Without this connection, API calls will fail with access errors.
+
+### 4) Get your database id
+Open your database page URL and copy the database UUID, then set:
+```env
+NOTION_DATABASE_ID=your_database_id
+```
+
+### 5) Verify
+```bash
+python skills/notion-pm/notion-client.py ping
+```
+If this succeeds, your Notion token + DB access are configured correctly.
+
 ## Notion schema expected
 Required properties:
 - `Task Name` (Title)
