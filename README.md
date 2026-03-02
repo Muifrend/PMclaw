@@ -2,6 +2,16 @@
 
 Autonomous PM assistant for Telegram → Notion task capture with optional Tavily research enrichment.
 
+## Why this is useful
+PM work often gets buried in chat. Ghost PM converts unstructured conversation into a reliable task system without manual copy/paste. Unlike a human, which isn't always available, Ghost PM collects inputs from each member 24/7, removing the need for a human PM. Additionally due to it being built on Openclaw, you can integrate this with any platform of your choice.
+
+Key benefits:
+- **Less admin overhead:** tasks and dates are captured automatically.
+- **Better execution:** every task requires a due date, so work is time-bound.
+- **Cleaner tracking:** dedupe prevents duplicate entries.
+- **Faster research:** researchable tasks are enriched with summary + links.
+- **Safer autonomy:** asks clarifying questions when required data is missing.
+
 ## Why a separate `workspace-pm` matters
 Create this agent in its **own workspace** (for example `~/.openclaw/workspace-pm`) so PM logic, memory, and tools stay isolated from your personal assistant (`main`).
 
