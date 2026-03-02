@@ -2,6 +2,15 @@
 
 Autonomous PM assistant for Telegram → Notion task capture with optional Tavily research enrichment.
 
+## Why a separate `workspace-pm` matters
+Create this agent in its **own workspace** (for example `~/.openclaw/workspace-pm`) so PM logic, memory, and tools stay isolated from your personal assistant (`main`).
+
+This separation gives you:
+- independent persona + instructions
+- separate files/state for PM automation
+- safer routing (only PM group goes to PM agent)
+- cleaner repo structure for sharing/deploying
+
 ## What it does
 - Interprets task-like messages from a PM Telegram group
 - Requires a due date (asks follow-up if missing)
@@ -18,17 +27,31 @@ Autonomous PM assistant for Telegram → Notion task capture with optional Tavil
 - `skills/notion-pm/research_client.py` — Tavily (+ optional OpenAI summarize)
 
 ## Setup
-1. Create virtualenv and install deps:
-   ```bash
-   python3 -m venv .venv
-   source .venv/bin/activate
-   pip install notion-client
-   ```
-2. Copy env template and fill values:
-   ```bash
-   cp .env.example .env
-   ```
-3. Share your Notion DB with your integration.
+
+### 1) Create a separate PM workspace + agent
+```bash
+mkdir -p ~/.openclaw/workspace-pm
+openclaw agents add pm --workspace ~/.openclaw/workspace-pm
+```
+
+Then route only your PM Telegram group to this agent (example in `openclaw.json.example`).
+
+### 2) Install Python deps in PM workspace
+```bash
+cd ~/.openclaw/workspace-pm
+python3 -m venv .venv
+source .venv/bin/activate
+pip install notion-client
+```
+
+### 3) Configure environment
+```bash
+cp .env.example .env
+```
+Fill in Notion/Tavily/OpenAI keys in `.env`.
+
+### 4) Share Notion DB with your integration
+Open your Notion DB → `...` → Connections → add your integration.
 
 ## Notion schema expected
 Required properties:
@@ -46,6 +69,7 @@ Optional properties for research enrichment:
 
 ## Quick tests
 ```bash
+cd ~/.openclaw/workspace-pm
 source .venv/bin/activate
 
 # 1) Notion auth
